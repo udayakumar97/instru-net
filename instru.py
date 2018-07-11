@@ -65,7 +65,7 @@ model=Conv2D(1, (1, 1), activation='sigmoid', padding='same')(model)
 
 
 instru = Model(input = inputs, output = model)
-instru.compile(optimizer = Adam(lr = 1e-4), loss = IOU_calc_loss, metrics = [IOU_calc_multi])
+instru.compile(optimizer = Adam(lr = 1e-4), loss = IOU_calc_loss, metrics = [IOU_calc])
 instru.summary()
 instru.fit(imgs_train, imgs_mask_train, batch_size=2, nb_epoch=1, verbose=1,validation_split=0.2, shuffle=True, callbacks=[model_checkpoint])
 plot_model(instru, to_file='model.png',show_shapes=True)
@@ -74,6 +74,7 @@ imgs_train, imgs_mask_train = mydata.load_train_data()
 print(imgs_mask_train.shape)
 print('Loading done')
 model_checkpoint = ModelCheckpoint('instru.hdf5', monitor='loss',verbose=1, save_best_only=True)
+
 instru.fit(imgs_train, imgs_mask_train, batch_size=2, nb_epoch=1, verbose=1,validation_split=0.2, shuffle=True, callbacks=[model_checkpoint])
 imgs_test=imgs_train[:30]
 imgs_mask_test = instru.predict(imgs_test, batch_size=1, verbose=1)
@@ -89,3 +90,4 @@ for i in range(0,imgs_test.shape[0]):
 	img=np.reshape(argmax(imgs_mask_train[i],axis=2),(1024,1280,1))
 	img=array_to_img(img)
 	img.save("../results/%d_mask_org.jpg"%(i))
+
