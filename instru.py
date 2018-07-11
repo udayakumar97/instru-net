@@ -72,7 +72,7 @@ imgs_train, imgs_mask_train = mydata.load_train_data()
 print(imgs_mask_train.shape)
 print('Loading done')
 model_checkpoint = ModelCheckpoint('instru.hdf5', monitor='loss',verbose=1, save_best_only=True)
-
+instru.load_weights('instru.hdf5')
 instru.fit(imgs_train, imgs_mask_train, batch_size=2, nb_epoch=10, verbose=1,validation_split=0.2, shuffle=True, callbacks=[model_checkpoint])
 imgs_test=imgs_train[:30]
 imgs_mask_test = instru.predict(imgs_test, batch_size=1, verbose=1)
