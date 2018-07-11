@@ -7,6 +7,7 @@ from loss import IOU_calc,IOU_calc_loss
 from data import dataProcess
 from keras.callbacks import ModelCheckpoint
 from keras.preprocessing.image import array_to_img
+import numpy as np
 
 inputs=Input(shape=(1024,1280,3))
 model=Conv2D(64, (3, 3), activation='relu', padding='same')(inputs)
