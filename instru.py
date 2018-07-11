@@ -6,6 +6,7 @@ from keras.utils import plot_model
 from loss import IOU_calc,IOU_calc_loss
 from data import dataProcess
 from keras.callbacks import ModelCheckpoint
+from keras.preprocessing.image import array_to_img
 
 inputs=Input(shape=(1024,1280,3))
 model=Conv2D(64, (3, 3), activation='relu', padding='same')(inputs)
@@ -73,7 +74,7 @@ print(imgs_mask_train.shape)
 print('Loading done')
 model_checkpoint = ModelCheckpoint('instru.hdf5', monitor='loss',verbose=1, save_best_only=True)
 instru.load_weights('instru.hdf5')
-instru.fit(imgs_train, imgs_mask_train, batch_size=2, nb_epoch=10, verbose=1,validation_split=0.2, shuffle=True, callbacks=[model_checkpoint])
+#instru.fit(imgs_train, imgs_mask_train, batch_size=2, nb_epoch=10, verbose=1,validation_split=0.2, shuffle=True, callbacks=[model_checkpoint])
 imgs_test=imgs_train[:30]
 imgs_mask_test = instru.predict(imgs_test, batch_size=1, verbose=1)
 #print(imgs_test)
