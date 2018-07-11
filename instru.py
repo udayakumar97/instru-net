@@ -84,10 +84,10 @@ for i in range(0,imgs_test.shape[0]):
 	img=array_to_img(imgs_test[i],scale=True)
 	img.save("../results/%d_img.jpg"%(i))
 
-	img=np.reshape(argmax(imgs_mask_test[i],axis=2),(1024,1280,1))
-	img=array_to_img(img)
+	#img=np.reshape(argmax(imgs_mask_test[i],axis=2),(1024,1280,1))
+	img=array_to_img(imgs_mask_test[i])
 	img.save("../results/%d_mask.jpg"%(i))
-	img=np.reshape(argmax(imgs_mask_train[i],axis=2),(1024,1280,1))
-	img=array_to_img(img)
+	#img=np.reshape(argmax(imgs_mask_train[i],axis=2),(1024,1280,1))
+	img=array_to_img(imgs_mask_train[i])
 	img.save("../results/%d_mask_org.jpg"%(i))
 
