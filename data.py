@@ -24,9 +24,9 @@ class dataProcess(object):
 
 	def create_train_data(self):
 		i = 0
-		imgdatas = np.ndarray((225,self.out_rows,self.out_cols,3), dtype=np.uint8)
-		imglabels = np.ndarray((225,self.out_rows,self.out_cols,1), dtype=np.uint8)
-		for j in range(1,2):
+		imgdatas = np.ndarray((225*2,self.out_rows,self.out_cols,3), dtype=np.uint8)
+		imglabels = np.ndarray((225*2,self.out_rows,self.out_cols,1), dtype=np.uint8)
+		for j in range(1,3):
 			data_path=self.dataset_path+'/instrument_dataset_'+str(j)+'/images'
 			label_path=self.dataset_path+'/instrument_dataset_'+str(j)+'/binary_masks'
 			print(data_path)
@@ -115,7 +115,7 @@ if __name__ == "__main__":
 	#aug.Augmentation()
 	#aug.splitMerge()
 	#aug.splitTransform()
-	mydata = dataProcess(1024, 1280,dataset_path= "../cropped_train", problem_type='binary', test_path = "../dataset/test")
+	mydata = dataProcess(1024, 1280,dataset_path= "/cropped_train", problem_type='binary', test_path = "../dataset/test")
 	mydata.create_train_data()
 	#mydata.create_test_data()
 	#imgs_train,imgs_mask_train = mydata.load_train_data()
