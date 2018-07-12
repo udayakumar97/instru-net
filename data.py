@@ -7,7 +7,7 @@ import glob
 
 class dataProcess(object):
 
-	def __init__(self, out_rows, out_cols, dataset_path = "../deform/train", problem_type='binary',img_type='jpg',label_type='png',test_path = "../test", npy_path = "../npydata"):
+	def __init__(self, out_rows, out_cols, dataset_path = "../deform/train", problem_type='binary',img_type='jpg',label_type='png',test_path = "../test", npy_path = "npydata"):
 
 		"""
 		
