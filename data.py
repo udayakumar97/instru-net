@@ -115,7 +115,7 @@ if __name__ == "__main__":
 	#aug.Augmentation()
 	#aug.splitMerge()
 	#aug.splitTransform()
-	mydata = dataProcess(1024, 1280,dataset_path= "/cropped_train", problem_type='binary', test_path = "../dataset/test")
+	mydata = dataProcess(1024, 1280,dataset_path= "cropped_train", problem_type='binary', test_path = "../dataset/test")
 	mydata.create_train_data()
 	#mydata.create_test_data()
 	#imgs_train,imgs_mask_train = mydata.load_train_data()
