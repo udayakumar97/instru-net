@@ -48,7 +48,7 @@ model=Dense(200,activation='softmax')(model)
 
 
 instru = Model(input = inputs, output = model)
-instru.compile(optimizer = SGD(lr = 0.01), loss = 'categorical_crossentropy', metrics = ['acc'])
+instru.compile(optimizer = Adam(lr = 1e-4), loss = 'categorical_crossentropy', metrics = ['acc'])
 
 
 labels_train_dict={}
