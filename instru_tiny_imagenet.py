@@ -12,21 +12,21 @@ from data_tiny_imagenet import DataGenerator
 
 inputs=Input(shape=(64,64,3))
 model=Conv2D(64, (3, 3), activation='relu', padding='same')(inputs)
-model=Conv2D(64, (3, 3), activation='relu', padding='same')(model)
+model=Conv2D(64, (3, 3), activation='relu', padding='same',dilation_rate=(6))(model)
 model=MaxPooling2D(pool_size=(2,2))(model)
 
 model=Conv2D(128, (3, 3), activation='relu', padding='same')(model)	
-model=Conv2D(128, (3, 3), activation='relu', padding='same')(model)	
+model=Conv2D(128, (3, 3), activation='relu', padding='same',dilation_rate=(3))(model)	
 model=MaxPooling2D(pool_size=(2,2))(model)
 
 model=Conv2D(256, (3, 3), activation='relu', padding='same')(model)	
-model=Conv2D(256, (3,3), activation='relu', padding='same',dilation_rate=(6))(model)
-model=Conv2D(256, (3,3), activation='relu', padding='same',dilation_rate=(6))(model)
+model=Conv2D(256, (3,3), activation='relu', padding='same')(model)
+model=Conv2D(256, (3,3), activation='relu', padding='same')(model)
 model=MaxPooling2D(pool_size=(2,2))(model)
 
 model=Conv2D(512, (3, 3), activation='relu', padding='same')(model)	
-model=Conv2D(512, (3,3), activation='relu', padding='same',dilation_rate=(3))(model)
-model=Conv2D(512, (3,3), activation='relu', padding='same',dilation_rate=(3))(model)
+model=Conv2D(512, (3,3), activation='relu', padding='same')(model)
+model=Conv2D(512, (3,3), activation='relu', padding='same')(model)
 model=MaxPooling2D(pool_size=(2,2))(model)
 
 '''
