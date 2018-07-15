@@ -51,6 +51,6 @@ class DataGenerator(keras.utils.Sequence):
             X[i,] = load_img(ID)
 
             # Store class
-            y[i] = self.labels[ID]
+            y[i] = int(self.labels[ID])
 
-        return X, keras.utils.to_categorical(int(y), num_classes=self.n_classes)
+        return X, keras.utils.to_categorical(y, num_classes=self.n_classes)
