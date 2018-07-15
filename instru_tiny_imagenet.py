@@ -1,4 +1,4 @@
-from keras.layers import Input,Conv2D,Conv2DTranspose,SeparableConv2D,AveragePooling2D,MaxPooling2D,concatenate,Dense
+from keras.layers import Input,Conv2D,Conv2DTranspose,SeparableConv2D,AveragePooling2D,MaxPooling2D,concatenate,Dense,Flatten
 from keras.models import Model
 from keras.optimizers import Adam,SGD
 from keras import backend as K
@@ -38,6 +38,7 @@ b4=Conv2D(512,(1,1),activation='relu',padding='same')(b4)
 b4=Conv2DTranspose(512,(3,3),strides=2,padding='same')(b4)
 model=concatenate([b0,b1,b2,b3,b4],axis=3)
 
+model=Flatten()(model)
 model=Dense(4096)(model)
 model=Dense(4096)(model)
 model=Dense(200,activation='softmax')(model)
