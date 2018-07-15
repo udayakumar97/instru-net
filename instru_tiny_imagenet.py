@@ -64,7 +64,7 @@ params = {'dim': (64,64),
           'batch_size': 64,
           'n_classes': 200,
           'n_channels': 3,
-          'shuffle': True
+          'shuffle': True}
 training_generator = DataGenerator(list_IDs_train, labels_train_dict, **params)
 validation_generator = DataGenerator(list_IDs_val, labels_val_dict, **params)
 
