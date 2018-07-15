@@ -1,4 +1,4 @@
-from keras.layers import Input,Conv2D,Conv2DTranspose,SeparableConv2D,AveragePooling2D,MaxPooling2D,concatenate
+from keras.layers import Input,Conv2D,Conv2DTranspose,SeparableConv2D,AveragePooling2D,MaxPooling2D,concatenate,Dense
 from keras.models import Model
 from keras.optimizers import Adam
 from keras import backend as K
