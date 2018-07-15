@@ -71,11 +71,12 @@ training_generator = DataGenerator(list_IDs_train, labels_train_dict, **params)
 validation_generator = DataGenerator(list_IDs_val, labels_val_dict, **params)
 
 model_checkpoint = ModelCheckpoint('../drive/checkpoints/instru_enc.hdf5', monitor='loss',verbose=1, save_best_only=True)
-#instru.load_weights('../drive/checkpoints/instru_enc.hdf5')
+instru.load_weights('../drive/checkpoints/instru_enc.hdf5')
 #instru.fit(imgs_train, imgs_mask_train, batch_size=2, nb_epoch=3, verbose=1,validation_split=0.2, shuffle=True, callbacks=[model_checkpoint])
 instru.fit_generator(generator=training_generator,
                     validation_data=validation_generator,
                     use_multiprocessing=True,
                     workers=6,
-                    callbacks=[model_checkpoint])
+                    callbacks=[model_checkpoint],
+                    epochs=10)
 
