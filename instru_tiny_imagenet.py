@@ -41,8 +41,8 @@ model=concatenate([b0,b1,b2,b3,b4],axis=3)
 '''
 
 model=Flatten()(model)
-model=Dense(4096)(model)
-model=Dense(4096)(model)
+model=Dense(4096,activation='relu')(model)
+model=Dense(4096,activation='relu')(model)
 model=Dense(200,activation='softmax')(model)
 
 
