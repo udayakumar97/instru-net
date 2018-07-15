@@ -29,6 +29,7 @@ model=SeparableConv2D(512, (3,3), activation='relu', padding='same',dilation_rat
 model=SeparableConv2D(512, (3,3), activation='relu', padding='same',dilation_rate=(12))(model)
 model=MaxPooling2D(pool_size=(2,2))(model)
 
+'''
 b0=Conv2D(512, (1, 1), activation='relu', padding='same')(model)
 b1=SeparableConv2D(512, (3,3), activation='relu', padding='same',dilation_rate=(6))(model)
 b2=SeparableConv2D(512, (3,3), activation='relu', padding='same',dilation_rate=(12))(model)
@@ -37,6 +38,7 @@ b4=AveragePooling2D(pool_size=(2,2),padding='same')(model)
 b4=Conv2D(512,(1,1),activation='relu',padding='same')(b4)
 b4=Conv2DTranspose(512,(3,3),strides=2,padding='same')(b4)
 model=concatenate([b0,b1,b2,b3,b4],axis=3)
+'''
 
 model=Flatten()(model)
 model=Dense(4096)(model)
