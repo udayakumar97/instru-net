@@ -1,6 +1,6 @@
 import numpy as np
 import keras
-
+from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 class DataGenerator(keras.utils.Sequence):
     'Generates data for Keras'
     def __init__(self, list_IDs, labels, batch_size=32, height=64,width=64, n_channels=3,
