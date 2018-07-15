@@ -60,7 +60,8 @@ labels_val = [line.rstrip('\n') for line in open('labels_val.txt')]
 for i in range(len(list_IDs_val)):
 	labels_val_dict[list_IDs_val[i]]=labels_val[i]
 
-params = {'dim': (64,64),
+params = {'height': 64,
+		  'width': 64,
           'batch_size': 64,
           'n_classes': 200,
           'n_channels': 3,
