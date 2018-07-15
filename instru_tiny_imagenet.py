@@ -46,7 +46,7 @@ model=Dense(200,activation='softmax')(model)
 
 
 instru = Model(input = inputs, output = model)
-instru.compile(optimizer = SGD(lr = 0.1), loss = 'categorical_crossentropy', metrics = ['acc'])
+instru.compile(optimizer = SGD(lr = 0.01), loss = 'categorical_crossentropy', metrics = ['acc'])
 
 
 labels_train_dict={}
@@ -63,7 +63,7 @@ for i in range(len(list_IDs_val)):
 
 params = {'height': 64,
 		  'width': 64,
-          'batch_size': 256,
+          'batch_size': 64,
           'n_classes': 200,
           'n_channels': 3,
           'shuffle': True}
@@ -71,12 +71,12 @@ training_generator = DataGenerator(list_IDs_train, labels_train_dict, **params)
 validation_generator = DataGenerator(list_IDs_val, labels_val_dict, **params)
 
 model_checkpoint = ModelCheckpoint('drive/checkpoints/instru_enc.hdf5', monitor='loss',verbose=1, save_best_only=True)
-instru.load_weights('drive/checkpoints/instru_enc.hdf5')
+#instru.load_weights('drive/checkpoints/instru_enc.hdf5')
 #instru.fit(imgs_train, imgs_mask_train, batch_size=2, nb_epoch=3, verbose=1,validation_split=0.2, shuffle=True, callbacks=[model_checkpoint])
 instru.fit_generator(generator=training_generator,
                     validation_data=validation_generator,
                     use_multiprocessing=True,
                     workers=6,
                     callbacks=[model_checkpoint],
-                    epochs=10)
+                    epochs=1)
 
