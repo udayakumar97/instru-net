@@ -78,5 +78,5 @@ instru.fit_generator(generator=training_generator,
                     use_multiprocessing=True,
                     workers=6,
                     callbacks=[model_checkpoint],
-                    epochs=10)
+                    epochs=1)
 
