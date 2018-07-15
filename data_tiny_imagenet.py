@@ -48,8 +48,7 @@ class DataGenerator(keras.utils.Sequence):
         # Generate data
         for i, ID in enumerate(list_IDs_temp):
             # Store sample
-            X[i,]=load_img(ID)
-            X[i]/=255.0
+            X[i,]=np.array(load_img(ID)).astype('float32')/255.0
 
             # Store class
             y[i] = int(self.labels[ID])
