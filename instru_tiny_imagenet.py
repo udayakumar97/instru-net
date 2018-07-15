@@ -20,13 +20,13 @@ model=Conv2D(128, (3, 3), activation='relu', padding='same')(model)
 model=MaxPooling2D(pool_size=(2,2))(model)
 
 model=Conv2D(256, (3, 3), activation='relu', padding='same')(model)	
-model=SeparableConv2D(256, (3,3), activation='relu', padding='same',dilation_rate=(3))(model)
-model=SeparableConv2D(256, (3,3), activation='relu', padding='same',dilation_rate=(3))(model)
+model=Conv2D(256, (3,3), activation='relu', padding='same')(model)
+model=Conv2D(256, (3,3), activation='relu', padding='same')(model)
 model=MaxPooling2D(pool_size=(2,2))(model)
 
-model_conn1=Conv2D(512, (3, 3), activation='relu', padding='same')(model)	
-model=SeparableConv2D(512, (3,3), activation='relu', padding='same',dilation_rate=(12))(model)
-model=SeparableConv2D(512, (3,3), activation='relu', padding='same',dilation_rate=(12))(model)
+model=Conv2D(512, (3, 3), activation='relu', padding='same')(model)	
+model=Conv2D(512, (3,3), activation='relu', padding='same')(model)
+model=Conv2D(512, (3,3), activation='relu', padding='same')(model)
 model=MaxPooling2D(pool_size=(2,2))(model)
 
 '''
