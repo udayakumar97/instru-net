@@ -24,6 +24,8 @@ def GAU(inputs_high,inputs_low):
 
 def InstruAttention(classes,shape=(1024,1280,3)):
 	vgg16=VGG16(include_top=False,weights='imagenet',input_shape=shape,classes=1000)
+	for layer in vgg16.layers:
+		layer.trainable=False
 	model=vgg16.output
 	b0=Conv2D(256, (1, 1), activation='relu', padding='same')(model)
 	b1=SeparableConv2D(256, (3,3), activation='relu', padding='same',dilation_rate=(6))(model)
