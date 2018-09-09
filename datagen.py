@@ -69,7 +69,7 @@ class DataGenerator(keras.utils.Sequence):
 
     def on_epoch_end(self):
         'Updates indexes after each epoch'
-        self.indexes = np.arange(len(self.list_IDs))
+        self.indexes = np.arange(len(self.img_IDs))
         if self.shuffle == True:
             np.random.shuffle(self.indexes)
 
