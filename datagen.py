@@ -80,10 +80,10 @@ class DataGenerator(keras.utils.Sequence):
         y = np.ndarray((self.batch_size,self.height,self.width,1), dtype=np.uint8)
 
         # Generate data
-        for i, ID in enumerate(img_IDs_temp):
+        for i in range(len(img_IDs_temp)):
             # Store sample
             
-            image=load_img(self.ROOT+ID,target_size=(self.height,self.width))
+            image=load_img(self.ROOT+img_IDs_temp[i],target_size=(self.height,self.width))
             image=img_to_array(image)
 
             # Store class
