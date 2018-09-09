@@ -66,5 +66,5 @@ def InstruAttention(classes,shape=(1024,1280,3)):
 	instru = Model(inputs = vgg16.input, outputs = model)
 	return instru
 
-instru=InstruAttention(4)
-plot_model(instru, to_file='instru_attention.png',show_shapes=True)
+#instru=InstruAttention(4)
+#plot_model(instru, to_file='instru_attention.png',show_shapes=True)
