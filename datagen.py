@@ -3,7 +3,6 @@ import keras
 from keras.preprocessing.image import ImageDataGenerator, array_to_img, img_to_array, load_img
 from keras.utils import to_categorical
 from keras import backend as K
-import preprocessing
 import random
 import tensorflow as tf
 
