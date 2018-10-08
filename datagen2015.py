@@ -9,7 +9,7 @@ import tensorflow as tf
 def get_trainval_list(ptype):
     train_imgs_list=[]
     train_label_list=[]
-    val_imgs_list=[]
+    val_imgs_list=[] 
     val_label_list=[]
     ROOT='Segmentation_Rigid_Training/Training/'
     for i in range(1,5):
@@ -31,7 +31,7 @@ def get_trainval_list(ptype):
 
 class DataGenerator(keras.utils.Sequence):
     'Generates data for Keras'
-    def __init__(self, img_IDs, label_IDs, ROOT,batch_size=8, height=1024,width=1280, n_channels=3,
+    def __init__(self, img_IDs, label_IDs, ROOT,batch_size=8, height=480,width=640, n_channels=3,
                  shuffle=False,is_training=False,ptype=0):
         'Initialization'
         self.img_IDs=img_IDs
@@ -43,7 +43,7 @@ class DataGenerator(keras.utils.Sequence):
         self.n_channels = n_channels
         self.shuffle = shuffle
         self.is_training=is_training
-        self.ptype=ptype  #0 is binary 1 is parts 2 is instrument
+        self.ptype=ptype  #0 is class 1 is instrument 
         self.on_epoch_end()
 
     def __len__(self):
@@ -84,7 +84,7 @@ class DataGenerator(keras.utils.Sequence):
             image=img_to_array(image)
 
             # Store class
-            label=load_img(self.ROOT+label_IDs_temp[i],color_mode='grayscale',target_size=(self.height,self.width))
+            label=load_img(self.ROOT+label_IDs_temp[i],grayscale=True,target_size=(self.height,self.width))
             label=img_to_array(label)
             if self.is_training:
                 
@@ -95,11 +95,10 @@ class DataGenerator(keras.utils.Sequence):
                 
             X[i,]=image/255.0
             if self.ptype==0:
-                label/=255
-            elif self.ptype==1:
-                label/=85
+                label[label==70]=1
+                label[label==160]=2
             else:
-                label/=32
+                label[]
             y[i,]=label
 
         return X, y
