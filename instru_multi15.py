@@ -1,6 +1,6 @@
 from keras.layers import Input,Conv2D,Conv2DTranspose,SeparableConv2D,AveragePooling2D,MaxPooling2D,concatenate,Dropout
 from keras.layers import GlobalAveragePooling2D,Reshape,multiply,UpSampling2D,Lambda,Concatenate
-from keras.layers import Permute,Add
+from keras.layers import Permute,Add,BatchNormalization,Activation
 from keras.models import Model
 from keras.optimizers import Adam
 from keras import backend as K
