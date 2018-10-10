@@ -11,13 +11,14 @@ def get_trainval_list(ptype):
     train_label_list=[]
     val_imgs_list=[] 
     val_label_list=[]
+    last={1:1106,2:1124,3:1123,4:1122}
     ROOT='Segmentation_Robotic_Training/Training/'
     for i in range(1,5):
-        for j in range(1,33):
+        for j in range(0,800):
             train_imgs_list.append(ROOT+'Dataset'+str(i)+'/Raw/frame'+str(j)+'.png')
             train_label_list.append(ROOT+'Dataset'+str(i)+'/Masks/frame'+str(j)+'.png')
         
-        for j in range(33,41):
+        for j in range(801,last+1):
             val_imgs_list.append(ROOT+'Dataset'+str(i)+'/Raw/frame'+str(j)+'.png')
             val_label_list.append(ROOT+'Dataset'+str(i)+'/Masks/frame'+str(j)+'.png')
     return train_imgs_list,train_label_list,val_imgs_list,val_label_list
