@@ -67,28 +67,38 @@ def InstruAttention(classes,shape=(480,640,3)):
 		layer.trainable=False
 	model=vgg16.output
 
-	model=Conv2D(256, (3, 3), activation='relu', padding='same')(model)
+	model=Conv2D(256, (3, 3), padding='same')(model)
+	model=BatchNormalization(epsilon=1e-5)(model)
+	model=Activation('relu')(model)
 	model = Dropout(0.1)(model)
 
 	model_tr=Conv2DTranspose(256,(3,3),strides=2,padding='same',activation='relu')(model)
 	model=concatenate([GAU(model,vgg16.layers[17].output,'first'),model_tr],axis=3)
 
-	model=Conv2D(256, (3, 3), activation='relu', padding='same')(model)
+	model=Conv2D(256, (3, 3), padding='same')(model)
+	model=BatchNormalization(epsilon=1e-5)(model)
+	model=Activation('relu')(model)
 	model = Dropout(0.1)(model)
 	model_tr=Conv2DTranspose(256,(3,3),strides=2,padding='same',activation='relu')(model)
 	model=concatenate([GAU(model,vgg16.layers[13].output,'second'),model_tr],axis=3)
 
-	model=Conv2D(128, (3, 3), activation='relu', padding='same')(model)
+	model=Conv2D(128, (3, 3), padding='same')(model)
+	model=BatchNormalization(epsilon=1e-5)(model)
+	model=Activation('relu')(model)
 	model = Dropout(0.1)(model)
 	model_tr=Conv2DTranspose(128,(3,3),strides=2,padding='same',activation='relu')(model)
 	model=concatenate([GAU(model,vgg16.layers[9].output,'third'),model_tr],axis=3)
 
-	model=Conv2D(64, (3, 3), activation='relu', padding='same')(model)
+	model=Conv2D(64, (3, 3), padding='same')(model)
+	model=BatchNormalization(epsilon=1e-5)(model)
+	model=Activation('relu')(model)
 	model = Dropout(0.1)(model)
 	model_tr=Conv2DTranspose(64,(3,3),strides=2,padding='same',activation='relu')(model)
 	model=concatenate([GAU(model,vgg16.layers[5].output,'fourth'),model_tr],axis=3)
 
-	model=Conv2D(32, (3, 3), activation='relu', padding='same')(model)
+	model=Conv2D(32, (3, 3), padding='same')(model)
+	model=BatchNormalization(epsilon=1e-5)(model)
+	model=Activation('relu')(model)
 	model = Dropout(0.1)(model)
 	model_tr=Conv2DTranspose(32,(3,3),strides=2,padding='same',activation='relu')(model)
 	model=concatenate([GAU(model,vgg16.layers[2].output,'fifth'),model_tr],axis=3)
