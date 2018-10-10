@@ -11,22 +11,15 @@ def get_trainval_list(ptype):
     train_label_list=[]
     val_imgs_list=[] 
     val_label_list=[]
-    ROOT='Segmentation_Rigid_Training/Training/'
+    ROOT='Segmentation_Robotic_Training/Training/'
     for i in range(1,5):
         for j in range(1,33):
-            train_imgs_list.append(ROOT+'OP'+str(i)+'/Raw/img_'+str(j).zfill(2)+'_raw.png')
-            if ptype==0:
-                train_label_list.append(ROOT+'OP'+str(i)+'/Masks/img_'+str(j).zfill(2)+'_class.png')
-            elif ptype==1:
-                train_label_list.append(ROOT+'OP'+str(i)+'/Masks/img_'+str(j).zfill(2)+'_instrument.png')
+            train_imgs_list.append(ROOT+'Dataset'+str(i)+'/Raw/frame'+str(j)+'.png')
+            train_label_list.append(ROOT+'Dataset'+str(i)+'/Masks/frame'+str(j)+'.png')
         
         for j in range(33,41):
-            val_imgs_list.append(ROOT+'OP'+str(i)+'/Raw/img_'+str(j).zfill(2)+'_raw.png')
-            if ptype==0:
-                val_label_list.append(ROOT+'OP'+str(i)+'/Masks/img_'+str(j).zfill(2)+'_class.png')
-            elif ptype==1:
-                val_label_list.append(ROOT+'OP'+str(i)+'/Masks/img_'+str(j).zfill(2)+'_instrument.png')
-                
+            val_imgs_list.append(ROOT+'Dataset'+str(i)+'/Raw/frame'+str(j)+'.png')
+            val_label_list.append(ROOT+'Dataset'+str(i)+'/Masks/frame'+str(j)+'.png')
     return train_imgs_list,train_label_list,val_imgs_list,val_label_list
 
 class DataGenerator(keras.utils.Sequence):
@@ -95,10 +88,13 @@ class DataGenerator(keras.utils.Sequence):
                 
             X[i,]=image/255.0
             if self.ptype==0:
-                label[label==70]=1
-                label[label==160]=2
+                label[label<=35]=0
+                mask=np.logical_and(label>35,label<=115)
+                label[mask]=1
+                label[label>115]=2
             else:
-                label[]
+                label[label<=35]=0
+                label[label>35]=1
             y[i,]=label
 
         return X, y
