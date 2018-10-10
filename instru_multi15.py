@@ -44,7 +44,7 @@ def spatial_attention(input_feature,name=''):
     return cbam_feature
 
 
-def GAU(inputs_high,inputs_low):
+def GAU(inputs_high,inputs_low,name=''):
     height=inputs_low._keras_shape[1]
     width=inputs_low._keras_shape[2]
     depth=inputs_low._keras_shape[3]
