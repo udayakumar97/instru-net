@@ -61,7 +61,7 @@ def GAU(inputs_high,inputs_low,name=''):
     sum=Add(name=name+'add_GAU')([inputs_high,spatial_feature])
     return mul
 
-def InstruAttention(classes,shape=(480,640,3)):
+def InstruAttention(classes,shape=(576,720,3)):
 	vgg16=VGG16(include_top=False,weights='imagenet',input_shape=shape,classes=1000)
 	for layer in vgg16.layers:
 		layer.trainable=False

@@ -25,7 +25,7 @@ def get_trainval_list(ptype):
 
 class DataGenerator(keras.utils.Sequence):
     'Generates data for Keras'
-    def __init__(self, img_IDs, label_IDs, ROOT,batch_size=8, height=480,width=640, n_channels=3,
+    def __init__(self, img_IDs, label_IDs, ROOT,batch_size=8, height=576,width=720, n_channels=3,
                  shuffle=False,is_training=False,ptype=0):
         'Initialization'
         self.img_IDs=img_IDs
