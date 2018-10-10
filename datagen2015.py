@@ -18,7 +18,7 @@ def get_trainval_list(ptype):
             train_imgs_list.append(ROOT+'Dataset'+str(i)+'/Raw/frame'+str(j)+'.png')
             train_label_list.append(ROOT+'Dataset'+str(i)+'/Masks/frame'+str(j)+'.png')
         
-        for j in range(801,last+1):
+        for j in range(801,last[i]+1):
             val_imgs_list.append(ROOT+'Dataset'+str(i)+'/Raw/frame'+str(j)+'.png')
             val_label_list.append(ROOT+'Dataset'+str(i)+'/Masks/frame'+str(j)+'.png')
     return train_imgs_list,train_label_list,val_imgs_list,val_label_list
