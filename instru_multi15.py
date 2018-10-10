@@ -58,7 +58,7 @@ def GAU(inputs_high,inputs_low,name=''):
     inputs_high=Conv2D(depth, (3, 3),padding='same', use_bias=False)(inputs_high)
     #with tf.device('/cpu:0'):
     inputs_high=UpSampling2D((height//inputs_high.shape[1],width//inputs_high.shape[2]),name=name+'up_GAU')(inputs_high)
-    sum=Add(name='add_GAU')([inputs_high,spatial_feature])
+    sum=Add(name=name+'add_GAU')([inputs_high,spatial_feature])
     return mul
 
 def InstruAttention(classes,shape=(480,640,3)):
@@ -71,27 +71,27 @@ def InstruAttention(classes,shape=(480,640,3)):
 	model = Dropout(0.1)(model)
 
 	model_tr=Conv2DTranspose(256,(3,3),strides=2,padding='same',activation='relu')(model)
-	model=concatenate([GAU(model,vgg16.layers[17].output),model_tr],axis=3)
+	model=concatenate([GAU(model,vgg16.layers[17].output,'first'),model_tr],axis=3)
 
 	model=Conv2D(256, (3, 3), activation='relu', padding='same')(model)
 	model = Dropout(0.1)(model)
 	model_tr=Conv2DTranspose(256,(3,3),strides=2,padding='same',activation='relu')(model)
-	model=concatenate([GAU(model,vgg16.layers[13].output),model_tr],axis=3)
+	model=concatenate([GAU(model,vgg16.layers[13].output,'second'),model_tr],axis=3)
 
 	model=Conv2D(128, (3, 3), activation='relu', padding='same')(model)
 	model = Dropout(0.1)(model)
 	model_tr=Conv2DTranspose(128,(3,3),strides=2,padding='same',activation='relu')(model)
-	model=concatenate([GAU(model,vgg16.layers[9].output),model_tr],axis=3)
+	model=concatenate([GAU(model,vgg16.layers[9].output,'third'),model_tr],axis=3)
 
 	model=Conv2D(64, (3, 3), activation='relu', padding='same')(model)
 	model = Dropout(0.1)(model)
 	model_tr=Conv2DTranspose(64,(3,3),strides=2,padding='same',activation='relu')(model)
-	model=concatenate([GAU(model,vgg16.layers[5].output),model_tr],axis=3)
+	model=concatenate([GAU(model,vgg16.layers[5].output,'fourth'),model_tr],axis=3)
 
 	model=Conv2D(32, (3, 3), activation='relu', padding='same')(model)
 	model = Dropout(0.1)(model)
 	model_tr=Conv2DTranspose(32,(3,3),strides=2,padding='same',activation='relu')(model)
-	model=concatenate([GAU(model,vgg16.layers[2].output),model_tr],axis=3)
+	model=concatenate([GAU(model,vgg16.layers[2].output,'fifth'),model_tr],axis=3)
 
 	model=Conv2D(32, (3, 3), activation='relu', padding='same')(model)
 
